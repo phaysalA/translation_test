@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:translation_test/utilities/responsive_size.dart';
-import 'package:translation_test/utilities/utilities.dart';
 import 'package:translation_test/widgets/custom_ripple_button.dart';
 import 'package:translation_test/widgets/grow_animation.dart';
 import 'package:translation_test/widgets/map_bubble.dart';
@@ -30,7 +29,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
       vsync: this,
     );
     _optionsAnimationController = AnimationController(
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 700),
       vsync: this,
     );
 
@@ -210,7 +209,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
               end: 1,
               controller: _optionsAnimationController,
               child: Align(
-                  alignment: Alignment(-0.9, 0.55),
+                  alignment: const Alignment(-0.9, 0.55),
                   child: OptionsTile(
                     dismiss: () {
                       _toggleAnimationController.forward();

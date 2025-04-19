@@ -19,7 +19,7 @@ class CustomNavBarItem extends StatefulWidget {
 }
 
 class _CustomNavBarItemState extends State<CustomNavBarItem>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late AnimationController _rippleController;
   late Animation<double> _rippleRadius;
   late Animation<double> _rippleOpacity;

@@ -24,7 +24,7 @@ class AnimatedCounterState extends State<AnimatedCounter> {
     _counter = IntTween(begin: 0, end: widget.count).animate(
       CurvedAnimation(
         parent: widget.controller,
-        curve: Interval(0.35, 0.5, curve: Curves.linear),
+        curve: const Interval(0.35, 0.5, curve: Curves.linear),
       ),
     );
   }

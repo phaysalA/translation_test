@@ -18,7 +18,7 @@ class CustomRippleButton extends StatefulWidget {
 }
 
 class _CustomRippleButtonState extends State<CustomRippleButton>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late AnimationController _rippleController;
   late Animation<double> _rippleRadius;
   late Animation<double> _rippleOpacity;
@@ -49,7 +49,7 @@ class _CustomRippleButtonState extends State<CustomRippleButton>
     ]).animate(
       CurvedAnimation(
           parent: _rippleController,
-          curve: Interval(0, 1, curve: Curves.easeOut)),
+          curve: const Interval(0, 1, curve: Curves.easeOut)),
     );
 
     _rippleOpacity = TweenSequence<double>([
@@ -70,7 +70,7 @@ class _CustomRippleButtonState extends State<CustomRippleButton>
     ]).animate(
       CurvedAnimation(
           parent: _rippleController,
-          curve: Interval(0, 1, curve: Curves.easeInOut)),
+          curve: const Interval(0, 1, curve: Curves.easeInOut)),
     );
 
     _colorAnimation = TweenSequence<Color?>([
@@ -93,7 +93,7 @@ class _CustomRippleButtonState extends State<CustomRippleButton>
       ),
     ]).animate(CurvedAnimation(
         parent: _rippleController,
-        curve: Interval(0.1, 1, curve: Curves.easeIn)));
+        curve: const Interval(0.1, 1, curve: Curves.easeIn)));
   }
 
   void _handleTap() {

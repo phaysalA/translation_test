@@ -24,7 +24,7 @@ class FadeInState extends State<FadeIn> {
 
     _animation = CurvedAnimation(
       parent: widget.controller,
-      curve: Interval(0.2, 0.3, curve: Curves.easeInOut),
+      curve: const Interval(0.2, 0.3, curve: Curves.easeInOut),
     );
   }
 

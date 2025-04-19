@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:translation_test/home_screen.dart';
 import 'package:translation_test/map_screen.dart';
-import 'package:translation_test/utilities/responsive_size.dart';
+import 'package:translation_test/utilities/assets_list.dart';
+import 'package:translation_test/utilities/pre_cache.dart';
 import 'package:translation_test/widgets/custom_bottom_nav_bar.dart';
 
 class Dashboard extends StatefulWidget {
@@ -12,6 +13,28 @@ class Dashboard extends StatefulWidget {
 }
 
 class DashboardState extends State<Dashboard> with TickerProviderStateMixin {
+  //asset optimization
+
+  Future<void> precacheAllAssets(BuildContext context) async {
+    // Precache regular images
+
+    for (final image in imageAssets) {
+      await precacheImage(AssetImage(image), context);
+    }
+
+    // Precache SVGs
+
+    for (final svg in svgAssets) {
+      await precacheSvg(assetPath: svg);
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheAllAssets(context);
+  }
+
   int _selectedIndex = 2;
 
   // Animation controller for the sliding effect

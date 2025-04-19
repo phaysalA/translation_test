@@ -21,12 +21,12 @@ class LeadingAddressState extends State<LeadingAddress> {
 
     _fadeAnimation = CurvedAnimation(
       parent: widget.controller,
-      curve: Interval(0.2, 0.45, curve: Curves.easeInOut),
+      curve: const Interval(0.2, 0.45, curve: Curves.easeInOut),
     );
 
     _animation = CurvedAnimation(
       parent: widget.controller,
-      curve: Interval(0.0, 0.2, curve: Curves.easeInOut),
+      curve: const Interval(0.0, 0.2, curve: Curves.easeInOut),
     );
   }
 

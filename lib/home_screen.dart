@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:translation_test/widgets/fade.dart';
 import 'package:translation_test/widgets/slide_in.dart';
 import 'package:translation_test/utilities/utilities.dart';

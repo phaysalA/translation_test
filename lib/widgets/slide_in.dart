@@ -10,7 +10,7 @@ class SlideIn extends StatefulWidget {
   SlideInState createState() => SlideInState();
 }
 
-class SlideInState extends State<SlideIn> with SingleTickerProviderStateMixin {
+class SlideInState extends State<SlideIn> {
   late Animation<Offset> _slideAnimation;
 
   @override
@@ -22,7 +22,7 @@ class SlideInState extends State<SlideIn> with SingleTickerProviderStateMixin {
       end: const Offset(0, 0), // slide up into view
     ).animate(CurvedAnimation(
       parent: widget.controller,
-      curve: Interval(0.3, 0.4, curve: Curves.easeIn),
+      curve: const Interval(0.3, 0.4, curve: Curves.easeIn),
     ));
   }
 

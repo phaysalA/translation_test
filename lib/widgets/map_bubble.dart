@@ -60,7 +60,7 @@ class _MapBubbleState extends State<MapBubble> {
             width: _widthAnimation.value,
             padding: EdgeInsets.symmetric(
                 vertical: 14.rh(context),
-                horizontal: _showFirst ? 8.rw(context) : 12.rw(context)),
+                horizontal: _showFirst ? 8.rw(context) : 10.rw(context)),
             decoration: const BoxDecoration(
                 color: orange,
                 borderRadius: BorderRadius.only(

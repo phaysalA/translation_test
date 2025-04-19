@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:translation_test/fade.dart';
-import 'package:translation_test/slide_in.dart';
-import 'package:translation_test/utilities.dart';
+import 'package:translation_test/widgets/fade.dart';
+import 'package:translation_test/widgets/slide_in.dart';
+import 'package:translation_test/utilities/utilities.dart';
 import 'package:translation_test/utilities/responsive_size.dart';
-import 'package:translation_test/widgets/animated_counter.dart';
 import 'package:translation_test/widgets/bottom_slider.dart';
 import 'package:translation_test/widgets/buy_circle.dart';
 import 'package:translation_test/widgets/grow_animation.dart';
@@ -13,14 +12,14 @@ import 'package:translation_test/widgets/profile_picture.dart';
 import 'package:translation_test/widgets/rent_square.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.controller});
+  final AnimationController controller;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen> {
   late AnimationController _controller;
 
   @override
@@ -28,12 +27,7 @@ class _HomeScreenState extends State<HomeScreen>
     // TODO: implement initState
     super.initState();
 
-    _controller = AnimationController(
-      duration: Duration(seconds: 5),
-      vsync: this,
-    );
-
-    _controller.forward(from: 0.0);
+    _controller = widget.controller;
   }
 
   @override
@@ -67,9 +61,12 @@ class _HomeScreenState extends State<HomeScreen>
                       LeadingAddress(
                         controller: _controller,
                       ),
-                      GrowAnimation(
-                        controller: _controller,
-                        child: const ProfilePicture(),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: GrowAnimation(
+                          controller: _controller,
+                          child: const ProfilePicture(),
+                        ),
                       )
                     ],
                   ),
@@ -77,8 +74,11 @@ class _HomeScreenState extends State<HomeScreen>
                     height: 30.rh(context),
                   ),
                   FadeIn(
-                    text: 'Hi, Marina',
                     controller: _controller,
+                    child: const Text(
+                      'Hi, Marina',
+                      style: TextStyle(fontSize: 24, color: brown),
+                    ),
                   ),
                   SlideIn(
                     text: 'let\'s select your',
@@ -94,8 +94,8 @@ class _HomeScreenState extends State<HomeScreen>
                   Row(
                     children: [
                       GrowAnimation(
-                        begin: 0.3,
-                        end: 0.5,
+                        begin: 0.36,
+                        end: 0.56,
                         controller: _controller,
                         child: BuyCircle(controller: _controller),
                       ),
@@ -103,8 +103,8 @@ class _HomeScreenState extends State<HomeScreen>
                         width: 8.rw(context),
                       ),
                       GrowAnimation(
-                        begin: 0.3,
-                        end: 0.5,
+                        begin: 0.36,
+                        end: 0.56,
                         controller: _controller,
                         child: RentSquare(controller: _controller),
                       ),

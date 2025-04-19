@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:translation_test/utilities/responsive_size.dart';
 import 'package:translation_test/widgets/image_address.dart';
@@ -14,6 +12,7 @@ class BottomSlider extends StatefulWidget {
 
 class BottomSliderState extends State<BottomSlider> {
   late Animation<Offset> _slideAnimation;
+  bool _animationDone = false;
 
   @override
   void initState() {
@@ -23,40 +22,87 @@ class BottomSliderState extends State<BottomSlider> {
       TweenSequenceItem(
         tween: Tween(
           begin: const Offset(0, 1), // Start offscreen (bottom)
-          end: const Offset(0, -0.05), // Move to center (visible)
+          end: const Offset(0, 0.5), // Move to center (visible)
         ).chain(CurveTween(curve: Curves.linear)),
-        weight: 60,
+        weight: 34,
       ),
       TweenSequenceItem(
         tween: Tween(
-          begin: const Offset(0, -0.05),
-          end: const Offset(0, 0.245), // Move slightly down (rest at 40%) 0.225
+          begin: const Offset(0, 0.5), // Start offscreen (bottom)
+          end: const Offset(0, 0.05), // Move to center (visible)
         ).chain(CurveTween(curve: Curves.linear)),
-        weight: 40,
+        weight: 34,
+      ),
+      TweenSequenceItem(
+        tween: Tween(
+          begin: const Offset(0, 0.05),
+          end: const Offset(0, 0.15), // Move slightly down (rest at 40%) 0.225
+        ).chain(CurveTween(curve: Curves.linear)),
+        weight: 33,
+      ),
+      TweenSequenceItem(
+        tween: Tween(
+          begin: const Offset(0, 0.15),
+          end: const Offset(0, 0.3), // Move slightly down (rest at 40%) 0.225
+        ).chain(CurveTween(curve: Curves.linear)),
+        weight: 33,
       ),
     ]).animate(CurvedAnimation(
       parent: widget.controller,
-      curve: const Interval(0.5, 0.8, curve: Curves.linear),
+      curve: const Interval(0.5, 0.9, curve: Curves.linear),
     ));
+
+    widget.controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        setState(() {
+          _animationDone = true;
+        });
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
+    return _animationDone
+        ? _buildDraggableSheet(context)
+        : _buildInitialAnimation();
+  }
 
+  Widget _buildInitialAnimation() {
     return SlideTransition(
       position: _slideAnimation,
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        child: Container(
-          padding: EdgeInsets.symmetric(
-              horizontal: 6.rw(context), vertical: 8.rh(context)),
-          height: screenHeight * 0.65,
-          width: double.infinity,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-          ),
+      child: _buildSheetContainer(context),
+    );
+  }
+
+  Widget _buildDraggableSheet(BuildContext context) {
+    return DraggableScrollableSheet(
+      initialChildSize: 0.4,
+      minChildSize: 0.3,
+      maxChildSize: 0.8,
+      builder: (context, scrollController) {
+        return _buildSheetContainer(context,
+            scrollController: scrollController);
+      },
+    );
+  }
+
+  Widget _buildSheetContainer(BuildContext context,
+      {ScrollController? scrollController}) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+            horizontal: 6.rw(context), vertical: 8.rh(context)),
+        height: screenHeight * 0.7,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        child: SingleChildScrollView(
+          controller: scrollController,
           child: Column(
             children: [
               ClipRRect(

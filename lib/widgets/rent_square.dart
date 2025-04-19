@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:translation_test/utilities.dart';
+import 'package:translation_test/utilities/utilities.dart';
 import 'package:translation_test/utilities/responsive_size.dart';
 import 'package:translation_test/widgets/animated_counter.dart';
 

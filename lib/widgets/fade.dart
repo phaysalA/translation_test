@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:translation_test/utilities.dart';
 
 class FadeIn extends StatefulWidget {
-  const FadeIn({super.key, required this.text, required this.controller});
-  final String text;
+  const FadeIn(
+      {super.key,
+      required this.child,
+      required this.controller,
+      this.begin = 0.2,
+      this.end = 0.3});
+  final Widget child;
   final AnimationController controller;
+  final double begin, end;
 
   @override
   FadeInState createState() => FadeInState();
@@ -27,10 +32,7 @@ class FadeInState extends State<FadeIn> {
   Widget build(BuildContext context) {
     return FadeTransition(
       opacity: _animation,
-      child: Text(
-        widget.text,
-        style: TextStyle(fontSize: 24, color: brown),
-      ),
+      child: widget.child,
     );
   }
 }

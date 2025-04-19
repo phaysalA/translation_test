@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:translation_test/utilities.dart';
+import 'package:translation_test/utilities/utilities.dart';
 import 'package:translation_test/utilities/responsive_size.dart';
 
 class LeadingAddress extends StatefulWidget {
@@ -21,12 +21,12 @@ class LeadingAddressState extends State<LeadingAddress> {
 
     _fadeAnimation = CurvedAnimation(
       parent: widget.controller,
-      curve: Interval(0.1, 0.25, curve: Curves.easeInOut),
+      curve: Interval(0.2, 0.45, curve: Curves.easeInOut),
     );
 
     _animation = CurvedAnimation(
       parent: widget.controller,
-      curve: Interval(0.0, 0.1, curve: Curves.easeInOut),
+      curve: Interval(0.0, 0.2, curve: Curves.easeInOut),
     );
   }
 

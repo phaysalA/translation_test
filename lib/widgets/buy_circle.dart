@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:translation_test/utilities.dart';
+import 'package:translation_test/utilities/utilities.dart';
 import 'package:translation_test/utilities/responsive_size.dart';
 import 'package:translation_test/widgets/animated_counter.dart';
 
@@ -21,7 +21,7 @@ class BuyCircle extends StatelessWidget {
           top: 16.rh(context)),
       width: 170.rw(context),
       height: 170.rh(context),
-      decoration: BoxDecoration(color: orange, shape: BoxShape.circle),
+      decoration: const BoxDecoration(color: orange, shape: BoxShape.circle),
       child: Column(
         children: [
           Text(

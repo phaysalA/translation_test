@@ -32,45 +32,47 @@ class LeadingAddressState extends State<LeadingAddress> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizeTransition(
-          axis: Axis.horizontal,
-          sizeFactor: _animation,
-          axisAlignment: -1.0,
-          child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.white,
-              ),
-              width: 160.rw(context),
-              height: 42.rh(context),
-              alignment: Alignment.center,
-              child: FadeTransition(
-                opacity: _fadeAnimation,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.rw(context)),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.location_on_sharp,
-                        color: brown,
-                        size: 16.rh(context),
-                      ),
-                      Text(
-                        'Saint Petersburg',
-                        style: TextStyle(
-                          fontSize: 13.rf(context),
-                          color: brown,
-                        ),
-                      ),
-                    ],
-                  ),
+    return RepaintBoundary(
+      child: Row(
+        children: [
+          SizeTransition(
+            axis: Axis.horizontal,
+            sizeFactor: _animation,
+            axisAlignment: -1.0,
+            child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white,
                 ),
-              )),
-        ),
-      ],
+                width: 160.rw(context),
+                height: 42.rh(context),
+                alignment: Alignment.center,
+                child: FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.rw(context)),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.location_on_sharp,
+                          color: brown,
+                          size: 16.rh(context),
+                        ),
+                        Text(
+                          'Saint Petersburg',
+                          style: TextStyle(
+                            fontSize: 13.rf(context),
+                            color: brown,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )),
+          ),
+        ],
+      ),
     );
   }
 }

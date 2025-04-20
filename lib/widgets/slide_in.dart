@@ -28,19 +28,21 @@ class SlideInState extends State<SlideIn> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 300,
-      height: 50, // This is the clipping box
+    return RepaintBoundary(
+      child: SizedBox(
+        width: 300,
+        height: 50, // This is the clipping box
 
-      child: ClipRect(
-        child: SlideTransition(
-          position: _slideAnimation,
-          child: Text(
-            widget.text,
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontSize: 34.rf(context),
-              color: Colors.black,
+        child: ClipRect(
+          child: SlideTransition(
+            position: _slideAnimation,
+            child: Text(
+              widget.text,
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 34.rf(context),
+                color: Colors.black,
+              ),
             ),
           ),
         ),

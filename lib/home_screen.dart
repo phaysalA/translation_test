@@ -32,88 +32,99 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            stops: const [0.1, 0.9],
-            colors: [
-              orange.withOpacity(0.01),
-              orange.withOpacity(0.3),
-            ],
-            begin: const Alignment(-0.85, -1),
-            end: Alignment.bottomRight,
+      body: Stack(
+        children: [
+          const RepaintBoundary(
+            child: BackgroundLayer(),
           ),
-        ),
-        child: Stack(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.rw(context)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 50.rh(context),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      LeadingAddress(
-                        controller: _controller,
-                      ),
-                      Align(
-                        alignment: Alignment.bottomLeft,
-                        child: GrowAnimation(
-                          controller: _controller,
-                          child: const ProfilePicture(),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30.rh(context),
-                  ),
-                  FadeIn(
-                    controller: _controller,
-                    child: const Text(
-                      'Hi, Marina',
-                      style: TextStyle(fontSize: 24, color: brown),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12.rw(context)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 50.rh(context),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    LeadingAddress(
+                      controller: _controller,
                     ),
-                  ),
-                  SlideIn(
-                    text: 'let\'s select your',
-                    controller: _controller,
-                  ),
-                  SlideIn(
-                    text: 'perfect place',
-                    controller: _controller,
-                  ),
-                  SizedBox(
-                    height: 30.rh(context),
-                  ),
-                  Row(
-                    children: [
-                      GrowAnimation(
-                        begin: 0.36,
-                        end: 0.56,
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: GrowAnimation(
                         controller: _controller,
-                        child: BuyCircle(controller: _controller),
+                        child: const ProfilePicture(),
                       ),
-                      SizedBox(
-                        width: 8.rw(context),
-                      ),
-                      GrowAnimation(
-                        begin: 0.36,
-                        end: 0.56,
-                        controller: _controller,
-                        child: RentSquare(controller: _controller),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 30.rh(context),
+                ),
+                FadeIn(
+                  controller: _controller,
+                  child: const Text(
+                    'Hi, Marina',
+                    style: TextStyle(fontSize: 24, color: brown),
+                  ),
+                ),
+                SlideIn(
+                  text: 'let\'s select your',
+                  controller: _controller,
+                ),
+                SlideIn(
+                  text: 'perfect place',
+                  controller: _controller,
+                ),
+                SizedBox(
+                  height: 30.rh(context),
+                ),
+                Row(
+                  children: [
+                    GrowAnimation(
+                      begin: 0.36,
+                      end: 0.56,
+                      controller: _controller,
+                      child: BuyCircle(controller: _controller),
+                    ),
+                    SizedBox(
+                      width: 8.rw(context),
+                    ),
+                    GrowAnimation(
+                      begin: 0.36,
+                      end: 0.56,
+                      controller: _controller,
+                      child: RentSquare(controller: _controller),
+                    ),
+                  ],
+                )
+              ],
             ),
-            BottomSlider(controller: _controller)
+          ),
+          BottomSlider(controller: _controller)
+        ],
+      ),
+    );
+  }
+}
+
+class BackgroundLayer extends StatelessWidget {
+  const BackgroundLayer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          stops: const [0.1, 0.9],
+          colors: [
+            orange.withOpacity(0.01),
+            orange.withOpacity(0.3),
           ],
+          begin: const Alignment(-0.85, -1),
+          end: Alignment.bottomRight,
         ),
       ),
     );

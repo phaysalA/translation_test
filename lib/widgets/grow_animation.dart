@@ -31,10 +31,12 @@ class GrowAnimationState extends State<GrowAnimation> {
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTransition(
-      alignment: widget.alignment ?? Alignment.center,
-      scale: _scale,
-      child: widget.child,
+    return RepaintBoundary(
+      child: ScaleTransition(
+        alignment: widget.alignment ?? Alignment.center,
+        scale: _scale,
+        child: widget.child,
+      ),
     );
   }
 }

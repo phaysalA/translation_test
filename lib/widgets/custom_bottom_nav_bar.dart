@@ -41,13 +41,6 @@ class CustomBottomNav extends StatelessWidget {
                     ? const Color.fromARGB(255, 54, 54, 54).withOpacity(0.8)
                     : const Color.fromARGB(177, 0, 0, 0),
                 borderRadius: BorderRadius.circular(40),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 20,
-                    offset: Offset(0, 5),
-                  ),
-                ],
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
